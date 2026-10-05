@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="theme-color" content="#fff4dc">
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+        <title>ねむぱんの モフモフしっぽ防衛隊！</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <main id="game" aria-label="ねむぱんのモフモフしっぽ防衛隊">
+            <canvas id="canvas"></canvas>
+            <div id="hud" class="hidden">
+                <div class="pill">
+                    <small>SCORE</small>
+                    <span id="score">0</span>
+                </div>
+                <div class="pill">
+                    <small id="level">TIME · LV1</small>
+                    <span id="time">60</span>
+                </div>
+                <div class="pill">
+                    <small>なかま</small>
+                    <span id="hearts" class="hearts">♥♥♥</span>
+                </div>
+            </div>
+            <div id="combo">COMBO ×2</div>
+            <div id="mode">☁️ ふんわりキャッチ</div>
+            <div id="toast"></div>
+            <img id="endingImage" class="ending-image hidden" alt="">
+            <section id="title" class="screen title-screen">
+                <img id="titleVisual" class="title-visual" alt="ねむぱんのモフモフしっぽ防衛隊！ タイトルイラスト">
+                <button id="bgmToggle" class="bgm-toggle" aria-label="BGMのオン・オフを切り替える">♫ BGM ON</button>
+                <div class="title-content">
+                    <div class="start-wrap"><button id="start">ゲームをはじめる</button></div>
+                </div>
+            </section>
+            <section id="howto" class="screen hidden">
+                <div class="badge">HOW TO PLAY</div>
+                <h2 class="logo" style="font-size:clamp(27px,7vw,38px);margin:8px 0 0">遊び方</h2>
+                <p class="subtitle" style="margin:3px auto 7px;font-size:12px">落ちてくるアイテムを、しっぽで正しく処理しよう！</p>
+                <div class="item-rules">
+                    <div class="item-rule good"><img data-asset="acorn" alt="木の実"><div><b>木の実</b><span>ゆっくり触れて<br>キャッチ！</span></div></div>
+                    <div class="item-rule good"><img data-asset="gold" alt="金の木の実"><div><b>金の木の実</b><span>ゆっくりキャッチ！<br>高得点</span></div></div>
+                    <div class="item-rule bad"><img data-asset="rock" alt="石"><div><b>石</b><span>しっぽを素早く振って<br>はじこう！</span></div></div>
+                    <div class="item-rule bad"><img data-asset="burr" alt="イガ栗"><div><b>イガ栗</b><span>しっぽを素早く振って<br>はじこう！</span></div></div>
+                </div>
+                <div class="difficulty-title">難易度を選んでスタート</div>
+                <div class="difficulty-buttons"><button id="normalStart">NORMAL<small>まずはここから</small></button><button id="hardStart" class="hard">HARD<small>スピード・密度UP</small></button></div>
+                <p class="hint">どちらも60秒間。HARDは同じルールで難しくなります。</p>
+                <button id="backTitle" class="back-title">タイトルへ戻る</button>
+            </section>
+            <section id="result" class="screen hidden">
+                <img id="resultArt" class="result-art" alt="">
+                <div class="panel">
+                    <div class="result-title">あなたの称号</div>
+                    <div id="rank" class="rank">モフモフ見習い</div>
+                    <div class="score-big">
+                        <span id="finalScore">0</span>
+                        <small> pt</small>
+                    </div>
+                    <div class="stats">
+                        <div>
+                            最大コンボ<b id="maxCombo">0</b>
+                        </div>
+                        <div>
+                            守った数<b id="saved">0</b>
+                        </div>
+                    </div>
+                    <div id="message" class="message"></div>
+                    <div id="recordBox" class="record-box">自己ベスト：0 pt</div>
+                </div>
+                <div class="share-actions">
+                    <button id="shareX" class="share-x">𝕏 結果をポスト</button>
+                    <button id="shareCopy" class="share-copy">📋 投稿文をコピー</button>
+                </div>
+                <p class="share-note">Xでログインを求められた場合は「投稿文をコピー」を使って、そのままXへ貼り付けできます。</p>
+                <button id="again" class="again">もう一回！</button>
+            </section>
+        </main>
+        <script src="js/game.js"></script>
+    </body>
+</html>
