@@ -730,7 +730,11 @@
                     updateUI()
                 }
                 function wrongHazard(it) {
+                    // はじき失敗後は「判定終了」を見た目でも分かりやすくするため高速落下。
                     it.wrong = true;
+                    it.failedFall = true;
+                    it.vy = Math.max(it.vy * 2.5, 520);
+                    it.vx *= 0.72;
                     playSfx('miss');
                     score = Math.max(0, score - 8);
                     breakCombo();
@@ -812,6 +816,10 @@
                             it.flyLife -= dt;
                             it.vy += 520 * dt;
                             it.vx *= Math.pow(0.985, dt * 60);
+                        }
+                        if (it.failedFall) {
+                            it.vy += 260 * dt;
+                            it.vx *= Math.pow(0.94, dt * 60);
                         }
                         const h = !it.hit && !it.wrong && hitTail(it, segs);
                         if (h) {
